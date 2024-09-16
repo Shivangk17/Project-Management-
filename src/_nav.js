@@ -358,7 +358,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Logout',
-    to: '/logout',
+    to: '/login',
     icon: <CIcon icon={cilAccountLogout} customClassName="nav-icon" />
   }
 ]

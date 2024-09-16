@@ -1,9 +1,12 @@
 import React from 'react'
 import DataTable from 'react-data-table-component';
-import { CCard, CCardHeader, CCardBody } from '@coreui/react'
+
+import { CCard, CCardHeader, CCardBody, CButton } from '@coreui/react'
+import { useNavigate } from 'react-router-dom';
 
 const UserIndex = () => {
-    console.log('abccdd')
+    const navigate = useNavigate();
+
     const columns = [
         {
             name: 'id',
@@ -52,9 +55,12 @@ const UserIndex = () => {
     return (
         <>
             <CCard className='mb-4'>
-                <CCardHeader><h2>Users</h2></CCardHeader>
+                <CCardHeader className='d-flex flex-row justify-content-between'>
+                    <h2 className='flex-item flex-grow-1'>Users</h2>
+                    <CButton color="primary" onClick={() => navigate('/users/create')}>Create New</CButton>
+                </CCardHeader>
                 <CCardBody>
-                <DataTable columns={columns} data={data}></DataTable>
+                    <DataTable columns={columns} data={data}></DataTable>
                 </CCardBody>
             </CCard>
         </>

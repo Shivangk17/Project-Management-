@@ -15,8 +15,11 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilEnvelopeClosed, cilLockLocked, cilUser } from '@coreui/icons'
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -25,14 +28,14 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={() => navigate('/')}>
                     <h1>Login</h1>
                     <p className="text-body-secondary">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilEnvelopeClosed} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Email" autoComplete="email" type='email'/>
+                      <CFormInput placeholder="Email" autoComplete="email" type='email' required/>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -42,12 +45,13 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        required
                       />
                     </CInputGroup>
                     <CInputGroup>
-                        <CButton color="primary" className="mx-auto px-5">
-                          Login
-                        </CButton>
+                      <CButton color="primary" type='submit' className="mx-auto px-5">
+                        Login
+                      </CButton>
                     </CInputGroup>
                   </CForm>
                 </CCardBody>
