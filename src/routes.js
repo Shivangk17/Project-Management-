@@ -87,7 +87,7 @@ const routes = [
   // { path: '/', exact: true, name: 'Home' },
   { path: '/', name: 'Dashboard', element: Dashboard },
 
-  { path: '/login', name: 'Login', element: Login },
+  // { path: '/login', name: 'Login', element: Login },
 
 
   { path: '/users', name: 'Users', element: UserIndex, exact: true },
