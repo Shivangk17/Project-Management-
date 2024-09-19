@@ -102,7 +102,7 @@ const UserIndex = () => {
     const [search, setSearch] = useState('')
     const handleChange = (e) => {
         setSearch(e.target.value)
-        data = data.filter((item) => { item.name.includes(search) })
+        // data = data.filter((item) => { item.name.includes(search) })
     }
     return (
         <>

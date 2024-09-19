@@ -56,7 +56,7 @@ const Login = () => {
                     <p className="text-body-secondary">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
-                        <CIcon icon={cilEnvelopeClosed} />
+                        <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput placeholder="Username" autoComplete='username' type='text' required value={username} onChange={(e) => setUsername(e.target.value)}/>
                     </CInputGroup>
