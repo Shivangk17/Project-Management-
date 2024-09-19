@@ -46,18 +46,8 @@ const App = () => {
         }
       >
         <Routes>
-          {/* <Route exact path="/login" name="Login Page" element={<Login />} />
-          <Route exact path="/404" name="Page 404" element={<Page404 />} />
-          <Route path="*" name="Home" element={<DefaultLayout />} /> */}
           <Route path="/login" element={<Login />} />
-          {/* {routes.map((item,index) => {
-            return (
-              <Route key={item.name} exact={item.exact} path={item.path} element={<PrivateRoute element={DefaultLayout} />} />
-            )
-          })} */}
-
           <Route path="/*" name="Home" element={<PrivateRoute element={DefaultLayout} />} />
-          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Suspense>
     </Router>

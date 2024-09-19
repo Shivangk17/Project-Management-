@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import DataTable, { createTheme } from 'react-data-table-component';
-import { CCard, CCardHeader, CCardBody, CButton, CFormInput } from '@coreui/react'
+import { CCard, CCardHeader, CCardBody, CButton, CFormCheck } from '@coreui/react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -40,18 +40,16 @@ const UserIndex = () => {
             name: 'Active',
             cell: (row) => (
                 <label className="switch">
-                    <input
-                        type="checkbox"
-                        checked={row.active}
-                        onChange={() => toggleActive(row.id)}
-                        aria-label={`Toggle active status for ${row.name}`}
-                    />
+                    { row.active ? 
+                    <CFormCheck id="defaultCheck2" checked disabled />
+                    
+                    :
+                    <CFormCheck id="defaultCheck2" disabled />
+                    }
                     <span className="slider"></span>
                 </label>
             ),
             ignoreRowClick: true,
-            allowOverflow: true,
-            button: true,
         },
     ];
 
@@ -85,30 +83,8 @@ const UserIndex = () => {
     ];
 
     const navigate = useNavigate();
-    const [records, setRecords] = useState(data);
 
-    // Toggle active status
-    const toggleActive = (id) => {
-        setRecords(prevRecords =>
-            prevRecords.map(record =>
-                record.id === id ? { ...record, active: !record.active } : record
-            )
-        );
-    };
 
-    const Container = styled.div`
-        padding: 20px;
-        background-color: #eee;
-        min-height: 60vh;
-        color: white;
-    `;
-
-    const [search, setSearch] = useState('')
-    const handleChange = (e) => {
-        setSearch(e.target.value)
-        // data = data.filter((item) => { item.name.includes(search) })
-
-    }
     const filteredItems = data.filter(
         item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
     );
@@ -118,20 +94,15 @@ const UserIndex = () => {
                 key="search"
                 type="text"
                 autoFocus="autoFocus"
-                onFocus={{
-                    outline: 'none',
-                    border: '#80bdff',
-                    boxShadow: '0 0 0 0.2rem rgba(0, 123, 255, 0.25)'
-                }}
+
                 placeholder="Search by name..."
-                // className="search-input"
                 style={{
                     width: '20%',
                     padding: '5px',
                     border: '1px solid #ced4da',
                     borderRadius: '4px',
                     fontSize: '14px',
-                    // marginBottom: '5px',
+                    backgroundColor: '#fff',
                     transition: 'border-color 0.3s ease'
                 }}
                 value={filterText}
@@ -173,28 +144,33 @@ const UserIndex = () => {
             },
         },
     };
+
+
+    const [users, setUsers] = useState([]);
+
     return (
         <>
             <CCard className='mb-4'>
                 <CCardHeader className='d-flex flex-row justify-content-between'>
-                    <h2 className='flex-item flex-grow-1'>Users</h2>
-                    <CButton color="primary" onClick={() => navigate('/users/create')}>Create New</CButton>
+                    <h2 className='flex-item flex-grow-1'>User Management</h2>
+                    <CButton color="primary my-1" onClick={() => navigate('/users/create')}>Create New</CButton>
                 </CCardHeader>
                 <CCardBody>
-                    <Container>
-                        <DataTable
-                            columns={columns}
-                            data={filteredItems}
-                            pagination
-                            paginationPerPage={10}
-                            paginationRowsPerPageOptions={[10, 20, 30]}
-                            highlightOnHover
-                            pointerOnHover
-                            subHeader
-                            subHeaderComponent={subHeaderComponentMemo}
-                            customStyles={customStyles}
-                            responsive
-                        /></Container>
+                    {/* <Container> */}
+                    <DataTable
+                        columns={columns}
+                        data={filteredItems}
+                        pagination
+                        paginationPerPage={10}
+                        paginationRowsPerPageOptions={[10, 20, 30]}
+                        highlightOnHover
+                        pointerOnHover
+                        subHeader
+                        subHeaderComponent={subHeaderComponentMemo}
+                        customStyles={customStyles}
+                        responsive
+                    />
+                    {/* </Container> */}
                 </CCardBody>
             </CCard >
         </>
